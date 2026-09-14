@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>Practice card images</title>
+<style>body{font:18px system-ui;margin:32px}canvas{border:1px solid #bbb;margin:16px}button{padding:12px;margin:12px}</style>
+<h1>Practice card images</h1><p>Save both PNGs, move them into the Assets folder, then import them into your PictureBoxes.</p>
+<canvas id="back" width="300" height="420"></canvas><canvas id="face" width="300" height="420"></canvas><br>
+<button onclick="save('back','card-back.png')">Save card back</button>
+<button onclick="save('face','card-face.png')">Save card face</button>
+<script>
+function base(id){const c=document.getElementById(id),x=c.getContext('2d');x.fillStyle='white';x.fillRect(0,0,300,420);x.strokeStyle='#222';x.lineWidth=4;x.strokeRect(4,4,292,412);return x;}
+const b=base('back');b.fillStyle='#174fa0';b.fillRect(18,18,264,384);b.strokeStyle='#a4ccff';b.lineWidth=2;
+for(let i=-400;i<400;i+=20){b.beginPath();b.moveTo(20,i);b.lineTo(280,i+260);b.stroke();}
+b.fillStyle='#174fa0';b.fillRect(84,156,132,108);b.fillStyle='white';b.font='bold 24px sans-serif';b.textAlign='center';b.fillText('BACK',150,216);
+const f=base('face');f.fillStyle='#111';f.font='bold 40px serif';f.fillText('A',22,54);f.save();f.translate(278,366);f.rotate(Math.PI);f.fillText('A',0,0);f.restore();
+f.beginPath();f.moveTo(150,120);f.bezierCurveTo(135,155,70,180,80,223);f.bezierCurveTo(89,254,129,252,150,229);f.bezierCurveTo(171,252,211,254,220,223);f.bezierCurveTo(230,180,165,155,150,120);f.fill();f.beginPath();f.moveTo(150,210);f.lineTo(127,279);f.lineTo(173,279);f.closePath();f.fill();
+function save(id,name){const a=document.createElement('a');a.download=name;a.href=document.getElementById(id).toDataURL('image/png');a.click();}
+</script></html>
